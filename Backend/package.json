@@ -1,0 +1,19 @@
+{
+  "name": "echolingua",
+  "version": "1.0.0",
+  "description": "TTS & Translate App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TheGoodCoder12/EchoLingua.git"
+  },
+  "author": "TheGoodCoder12",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TheGoodCoder12/EchoLingua/issues"
+  },
+  "homepage": "https://github.com/TheGoodCoder12/EchoLingua#readme"
+}
