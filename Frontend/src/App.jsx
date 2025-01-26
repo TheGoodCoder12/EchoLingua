@@ -8,7 +8,6 @@ function App() {
       <Navbar/>
       <div className="flex justify-evenly items-center">
       <TextInput/>
-      <VoiceSelector/>
       </div>
 
     </div>
