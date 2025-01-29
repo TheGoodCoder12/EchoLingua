@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Translation = () => {
-  const [userInput, setUserInput] = useState('');
-  const [selectedLanguage, setSelectedLanguage] = useState("Select Language");
   const [isOpen, setIsOpen] = useState(false);
-  const [translatedText, setTranslatedText] = useState('');
+  const [selectedLanguage, setSelectedLanguage] = useState("Select language");
+  const [userInput, setUserInput] = useState("");
+  const [translatedText, setTranslatedText] = useState("");
 
   const languages = [
-    { code: 'en', name: 'English' },
-    { code: 'es', name: 'Spanish' },
-    { code: 'fr', name: 'French' },
-    { code: 'de', name: 'German' },
-    { code: 'zh', name: 'Chinese' },
-    { code: 'ja', name: 'Japanese' },
+    { code: "en", name: "English" },
+    { code: "es", name: "Spanish" },
+    { code: "fr", name: "French" },
+    { code: "de", name: "German" },
+    { code: "zh", name: "Chinese" },
+    { code: "ja", name: "Japanese" },
   ];
 
   const translateText = async () => {
@@ -31,43 +31,42 @@ const Translation = () => {
   };
 
   return (
-    <div className="mt-4 w-full">
-      <span className="text-white">Select Language</span>
-      <div className="relative flex flex-col items-center w-full mb-2">
+    <div className="space-y-4">
+      <div className="relative">
         <button
           onClick={() => setIsOpen((prev) => !prev)}
-          className="bg-blue-500 p-4 w-full flex items-center justify-between font-bold text-lg rounded-lg transition-transform duration-300 transform hover:scale-105"
+          className="w-full bg-blue-500 p-3 rounded-lg text-white font-semibold hover:bg-blue-600 transition-all duration-300 flex justify-between items-center"
         >
           {selectedLanguage}
+          <span className="transform transition-transform duration-300">{isOpen ? "▲" : "▼"}</span>
         </button>
         {isOpen && (
-          <div className="absolute bg-blue-500 top-full left-0 flex flex-col items-start rounded-lg p-2 w-full shadow-md">
-            {languages.map((language) => (
+          <div className="absolute w-full mt-2 bg-gray-600 rounded-lg shadow-lg z-10">
+            {languages.map((language, index) => (
               <div
-                key={language.code}
+                key={index}
                 onClick={() => handleOptionClick(language)}
-                className="hover:bg-blue-600 px-4 py-2 rounded w-full cursor-pointer transition-colors duration-150"
+                className="p-3 hover:bg-gray-500 cursor-pointer rounded-lg"
               >
                 {language.code} ({language.name})
               </div>
             ))}
           </div>
         )}
-        <button
-          onClick={translateText}
-          className='bg-blue-600 w-full mt-4 p-2 text-xl text-white rounded-lg hover:scale-105 transition-transform duration-150'
-        >
-          Translate
-        </button>
-        {translatedText && (
-          <div className="mt-4 p-2 bg-gray-700 rounded-lg text-white">
-            <h2 className="font-bold">Translated Text:</h2>
-            <p>{translatedText}</p>
-          </div>
-        )}
       </div>
+      <button
+        onClick={translateText}
+        className="w-full bg-blue-500 p-3 rounded-lg text-white font-semibold hover:bg-blue-600 transition-all duration-300"
+      >
+        Translate
+      </button>
+      {translatedText && (
+        <div className="p-4 bg-gray-600 rounded-lg text-white">
+          <strong>Translated Text:</strong> {translatedText}
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default Translation;

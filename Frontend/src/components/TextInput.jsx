@@ -4,7 +4,7 @@ import Translation from "./Translation";
 const TextInput = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [voices, setVoices] = useState([]);
-  const [selectedVoice, setSelectedVoice] = useState("Select Voice");
+  const [selectedVoice, setSelectedVoice] = useState("Select voice");
   const [textArea, setTextArea] = useState("");
 
   useEffect(() => {
@@ -26,40 +26,41 @@ const TextInput = () => {
     setIsOpen(false);
   };
 
-  const playText = () => {
+  function playText() {
     const utterance = new SpeechSynthesisUtterance(textArea);
     const selectedVoiceObject = voices.find((voice) => voice.name === selectedVoice);
     if (selectedVoiceObject) {
       utterance.voice = selectedVoiceObject;
     }
     speechSynthesis.speak(utterance);
-  };
+  }
 
   return (
-    <div className="bg-white bg-opacity-20 backdrop-blur-lg rounded-3xl shadow-lg w-1/2 p-8">
-      <h1 className="text-center text-4xl text-white mb-6">TTS and Translation</h1>
-      <div className="flex flex-col items-center">
+    <div className="bg-gray-700 w-full max-w-3xl rounded-2xl shadow-2xl p-8">
+      <h1 className="text-4xl font-bold text-center text-blue-400 mb-8">TTS and Translation</h1>
+      <div className="space-y-6">
         <textarea
-          className="text-2xl p-3 mb-4 rounded-lg bg-gray-200 text-black w-full h-32"
+          className="w-full p-4 rounded-lg bg-gray-600 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
           placeholder="Enter text here..."
+          rows="5"
           onChange={(e) => setTextArea(e.target.value)}
         ></textarea>
         <Translation />
-        <span className="text-white text-lg mb-2">Select Voice</span>
-        <div className="relative w-full">
+        <div className="relative">
           <button
             onClick={() => setIsOpen((prev) => !prev)}
-            className="bg-blue-500 p-4 w-full flex items-center justify-between font-bold text-lg rounded-lg transition-transform duration-300 transform hover:scale-105"
+            className="w-full bg-blue-500 p-3 rounded-lg text-white font-semibold hover:bg-blue-600 transition-all duration-300 flex justify-between items-center"
           >
             {selectedVoice}
+            <span className="transform transition-transform duration-300">{isOpen ? "▲" : "▼"}</span>
           </button>
           {isOpen && (
-            <div className="absolute bg-blue-500 top-full left-0 flex flex-col items-start rounded-lg p-2 w-full shadow-md">
+            <div className="absolute w-full mt-2 bg-gray-600 rounded-lg shadow-lg z-10">
               {voices.map((voice, index) => (
                 <div
                   key={index}
                   onClick={() => handleOptionClick(voice)}
-                  className="hover:bg-blue-600 px-4 py-2 rounded w-full cursor-pointer transition-colors duration-150"
+                  className="p-3 hover:bg-gray-500 cursor-pointer rounded-lg"
                 >
                   {voice.name} ({voice.lang})
                 </div>
@@ -69,7 +70,7 @@ const TextInput = () => {
         </div>
         <button
           onClick={playText}
-          className="bg-blue-600 w-full mt-4 p-2 text-xl text-white rounded-lg hover:scale-105 transition-transform duration-150"
+          className="w-full bg-blue-500 p-3 rounded-lg text-white font-semibold hover:bg-blue-600 transition-all duration-300"
         >
           Play Text
         </button>

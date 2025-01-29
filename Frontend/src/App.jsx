@@ -1,12 +1,11 @@
 import Navbar from "./components/Navbar";
 import TextInput from "./components/TextInput";
-import VoiceSelector from "./components/VoiceSelector";
 
 function App() {
   return (
-    <div className="bg-gradient-to-r from-purple-500 to-blue-600 text-white h-screen font-jersey flex flex-col">
+    <div className="bg-gray-900 text-white min-h-screen font-jersey">
       <Navbar />
-      <div className="flex justify-center items-center flex-grow">
+      <div className="flex justify-center items-center p-8">
         <TextInput />
       </div>
     </div>
