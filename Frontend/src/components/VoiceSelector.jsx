@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const RotarySelector = () => {
+const VoiceSelector = () => {
     const [voice, setVoice] = useState([]);
 
     useEffect(() => {
@@ -8,7 +8,6 @@ const RotarySelector = () => {
             try {
                 let response = await fetch("https://jsonplaceholder.typicode.com/users");
                 let data = await response.json();
-                console.log(data);
                 setVoice(data);
             } catch (error) {
                 console.error(error);
@@ -43,15 +42,10 @@ const RotarySelector = () => {
                         </div>
                     );
                 })}
-                <div className="w-8 h-8 bg-blue-500 rounded-full shadow-lg"></div>
-            </div>
-            <span className="mt-4 text-gray-600 text-4xl">
-                Selected: { } users
-            </span>
-            <div className="mt-6">
+                <div className="w-2 h-2 bg-blue-500 rounded-full absolute top-1/2 left-1/2" />
             </div>
         </div>
     );
 };
 
-export default RotarySelector;
+export default VoiceSelector;
